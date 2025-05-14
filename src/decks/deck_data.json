@@ -1,0 +1,61 @@
+{
+  "White": [
+    {
+      "Miss": 6
+    },
+    {
+      "One": 6
+    },
+    {
+      "Two": 3
+    },
+    {
+      "TwoCrit": 3
+    }
+  ],
+  "Yellow": [
+    {
+      "Miss": 6
+    },
+    {
+      "One": 3
+    },
+    {
+      "Two": 3
+    },
+    {
+      "Three": 3
+    },
+    {
+      "ThreeCrit": 3
+    }
+  ],
+  "Red": [
+    {
+      "Miss": 6
+    },
+    {
+      "Two": 3
+    },
+    {
+      "Three": 6
+    },
+    {
+      "FourCrit": 3
+    }
+  ],
+  "Black": [
+    {
+      "Miss": 6
+    },
+    {
+      "Three": 6
+    },
+    {
+      "Four": 3
+    },
+    {
+      "FiveCrit": 3
+    }
+  ]
+}

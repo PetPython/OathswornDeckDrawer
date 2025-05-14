@@ -1,0 +1,155 @@
+<Button>:
+    font_size: sp(45)
+    bold: True
+
+<Label>:
+    font_size: sp(45)
+
+<MainScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 10
+        padding: 10
+
+        Label:
+            text: "Choose deck type:"
+            size_hint: (1, 0.2)
+
+        BoxLayout:
+            spacing: 10
+            Button:
+                text: "Player"
+                on_press: root.manager.current = 'player'
+            Button:
+                text: "Enemy"
+                on_press: root.manager.current = 'enemy'
+
+<DeckScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 10
+        padding: 10
+
+        BoxLayout:
+            size_hint: (1, 0.1)
+            Button:
+                text: "Back"
+                size_hint: (0.2, 1)
+                on_press: root.on_back_button_press()
+            Label:
+                text: root.title
+                size_hint: (0.8, 1)
+                font_size: 24
+                bold: True
+
+        GridLayout:
+            cols: 4
+            spacing: 10
+            size_hint: (1, 0.7)
+
+            Button:
+                text: "White"
+                background_color: "white"
+                on_release: root.on_deck_button_release("White")
+            Label:
+                text: str(root.decks_click_count["White"])
+            Label:
+                text: "Cards left: " + str(root.decks_remaining_cards["White"]) + "\n" + "Misses left: " + str(root.decks_remaining_misses["White"])
+            Button:
+                text: "Shuffle"
+                size_hint: (0.3, 1)
+                on_release:
+                    root.on_shuffle_button_release("White")
+
+            Button:
+                text: "Yellow"
+                background_color: "yellow"
+                on_release: root.on_deck_button_release("Yellow")
+            Label:
+                text: str(root.decks_click_count["Yellow"])
+            Label:
+                text: "Cards left: " + str(root.decks_remaining_cards["Yellow"]) + "\n" + "Misses left: " + str(root.decks_remaining_misses["Yellow"])
+            Button:
+                text: "Shuffle"
+                size_hint: (0.3, 1)
+                on_release:
+                    root.on_shuffle_button_release("Yellow")
+
+            Button:
+                text: "Red"
+                background_color: "red"
+                on_release: root.on_deck_button_release("Red")
+            Label:
+                text: str(root.decks_click_count["Red"])
+            Label:
+                text: "Cards left: " + str(root.decks_remaining_cards["Red"]) + "\n" + "Misses left: " + str(root.decks_remaining_misses["Red"])
+            Button:
+                text: "Shuffle"
+                size_hint: (0.3, 1)
+                on_release:
+                    root.on_shuffle_button_release("Red")
+
+            Button:
+                text: "Black"
+                background_color: "black"
+                on_release: root.on_deck_button_release("Black")
+            Label:
+                text: str(root.decks_click_count["Black"])
+            Label:
+                text: "Cards left: " + str(root.decks_remaining_cards["Black"]) + "\n" + "Misses left: " + str(root.decks_remaining_misses["Black"])
+            Button:
+                text: "Shuffle"
+                size_hint: (0.3, 1)
+                on_release:
+                    root.on_shuffle_button_release("Black")
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: (1, 0.1)
+            spacing: 5
+
+            Button:
+                id: draw_btn
+                text: "Draw"
+                size_hint: (0.5, 1)
+                background_color: (0.5, 0.5, 0.5, 1) if self.disabled else (0.2, 0.6, 1, 1)
+                on_release:
+                    root.on_draw_button_release()
+                    self.disabled = True
+                    continue_btn.disabled = False
+                    end_btn.disabled = False
+
+            Button:
+                id: continue_btn
+                text: "Continue"
+                size_hint: (0.25, 1)
+                background_color: (0.5, 0.5, 0.5, 1) if self.disabled else (0.2, 0.6, 1, 1)
+                disabled: True
+                on_release:
+                    root.on_continue_button_release()
+
+            Button:
+                id: end_btn
+                text: "End drawing"
+                size_hint: (0.25, 1)
+                background_color: (0.5, 0.5, 0.5, 1) if self.disabled else (0.2, 0.6, 1, 1)
+                disabled: True
+                on_release:
+                    self.disabled = True
+                    draw_btn.disabled = False
+                    continue_btn.disabled = True
+
+        ScrollView:
+            size_hint: (1, 0.2)
+            bar_width: 10
+            scroll_type: ['bars', 'content']
+
+            Label:
+                id: result_label
+                text: root.draw_result
+                size_hint_y: None
+                height: self.texture_size[1]
+                text_size: self.width, None
+                halign: 'left'
+                valign: 'top'
+                padding: (10, 10)
